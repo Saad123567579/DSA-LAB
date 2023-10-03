@@ -104,3 +104,84 @@
     
 //     return 0;
 // }
+
+
+
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node(int v){
+        data = v;
+        next = NULL;
+        prev = NULL;
+    }
+};
+class DoublyLinkedList{
+    public:
+    Node* head ;
+    Node* tail;
+    DoublyLinkedList(){
+        head = NULL;
+        tail = NULL;
+        
+    }
+    
+void insertHead(int x) {
+    Node* newNode = new Node(x);
+    if(head == NULL && tail == NULL){
+        head = newNode;
+        tail = newNode;
+        head->next = tail;
+        
+        tail->prev = head;
+        tail->next = head;
+        return;
+    }
+    newNode->next = head;
+    head->prev = newNode;
+    head = newNode;
+    tail->next = head;
+}
+
+void insertTail(int x) {
+    Node* newNode = new Node(x);
+    if(head == NULL && tail == NULL){
+        head = newNode;
+        tail = newNode;
+        head->next = tail;
+        tail->prev = head;
+           tail->next = head;
+        return;
+    }
+    tail->next = newNode;
+    newNode->prev = tail;
+    newNode->next = head;
+    head->prev = newNode;
+    tail = newNode;
+   
+}
+
+void display(){
+    Node* temp = head;
+    while(temp ){
+        cout<<" "<<temp->data;
+        temp=temp->next;
+    }
+}
+    
+};
+
+int main(){
+     DoublyLinkedList *list = new DoublyLinkedList ;
+    list->insertHead(1);
+    list->insertHead(2);
+      list->insertHead(3);
+        list->insertHead(4);
+          list->insertHead(5);
+    
+    list->display();
+}
